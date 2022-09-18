@@ -24,10 +24,9 @@ public class ExceptionMatcherTest {
                 () -> assertThat(requireNonNull(null), willThrow(IllegalArgumentException.class))
         );
 
-        String expectedMessage = String.format(
-                "%n%s%n%s",
-                "Expected: throws java.lang.IllegalArgumentException",
-                "     but: was java.lang.NullPointerException"
+        String expectedMessage = expectedMessage(
+                "throws java.lang.IllegalArgumentException",
+                "was java.lang.NullPointerException"
         );
 
         assertThat(assertionError.getMessage(), is(equalTo(expectedMessage)));
@@ -40,10 +39,9 @@ public class ExceptionMatcherTest {
                 () -> assertThat(requireNonNull("Dummy value"), willThrow(NullPointerException.class))
         );
 
-        String expectedMessage = String.format(
-                "%n%s%n%s",
-                "Expected: throws java.lang.NullPointerException",
-                "     but: nothing was thrown"
+        String expectedMessage = expectedMessage(
+                "throws java.lang.NullPointerException",
+                "nothing was thrown"
         );
 
         assertThat(assertionError.getMessage(), is(equalTo(expectedMessage)));
@@ -51,6 +49,14 @@ public class ExceptionMatcherTest {
 
     private Runnable requireNonNull(Object value) {
         return () -> Objects.requireNonNull(value);
+    }
+
+    private String expectedMessage(String expected, String actual) {
+        return String.format(
+                "%nExpected: %s%n     but: %s",
+                expected,
+                actual
+        );
     }
 
 }
