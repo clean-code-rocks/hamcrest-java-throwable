@@ -3,11 +3,15 @@ package rocks.cleancode.hamcrest.throwable;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-public class ExceptionMatcher extends TypeSafeDiagnosingMatcher<Runnable> {
+public class ExceptionMatcher<E extends Exception> extends TypeSafeDiagnosingMatcher<Runnable> {
 
-    private final Class<? extends Exception> exceptionClass;
+    public static <E extends Exception> ExceptionMatcher<E> willThrow(Class<E> exceptionClass) {
+        return new ExceptionMatcher<>(exceptionClass);
+    }
 
-    public ExceptionMatcher(Class<? extends Exception> exceptionClass) {
+    private final Class<E> exceptionClass;
+
+    private ExceptionMatcher(Class<E> exceptionClass) {
         this.exceptionClass = exceptionClass;
     }
 
