@@ -6,7 +6,7 @@ import org.hamcrest.TypeSafeDiagnosingMatcher;
 
 public class MessageMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<T> {
 
-    public static <E extends Throwable> Matcher<E> message(Matcher<String> exceptionMessageMatcher) {
+    public static <T extends Throwable> Matcher<T> message(Matcher<String> exceptionMessageMatcher) {
         return new MessageMatcher<>(exceptionMessageMatcher);
     }
 
