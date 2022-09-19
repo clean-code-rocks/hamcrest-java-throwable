@@ -5,9 +5,13 @@ import org.hamcrest.Matcher;
 
 public class ThrowableMessageMatcher<T extends Throwable> extends ThrowablePropertyMatcher<T> {
 
+    public static <T extends Throwable> ThrowablePropertyMatcher<T> message(Matcher<String> messageMatcher) {
+        return new ThrowableMessageMatcher<>(messageMatcher);
+    }
+
     private final Matcher<String> messageMatcher;
 
-    public ThrowableMessageMatcher(Matcher<String> messageMatcher) {
+    private ThrowableMessageMatcher(Matcher<String> messageMatcher) {
         this.messageMatcher = messageMatcher;
     }
 

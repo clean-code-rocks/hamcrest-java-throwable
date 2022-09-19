@@ -6,6 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static rocks.cleancode.hamcrest.throwable.ThrowableMessageMatcher.message;
 
 public class ThrowableMessageMatcherTest {
 
@@ -13,7 +14,7 @@ public class ThrowableMessageMatcherTest {
     public void should_match_throwable_message() {
         Throwable throwable = new NullPointerException("Exception message");
 
-        assertThat(throwable, new ThrowableMessageMatcher<>(is(equalTo("Exception message"))));
+        assertThat(throwable, message(is(equalTo("Exception message"))));
     }
 
     @Test
@@ -22,7 +23,7 @@ public class ThrowableMessageMatcherTest {
 
         AssertionError assertionError = assertThrows(
                 AssertionError.class,
-                () -> assertThat(throwable, new ThrowableMessageMatcher<>(is(equalTo("Expected message"))))
+                () -> assertThat(throwable, message(is(equalTo("Expected message"))))
         );
 
         String expectedMessage = String.format(
