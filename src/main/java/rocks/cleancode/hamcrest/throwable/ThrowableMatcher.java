@@ -1,13 +1,18 @@
 package rocks.cleancode.hamcrest.throwable;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-public class ThrowableMatcher extends TypeSafeDiagnosingMatcher<Runnable> {
+public class ThrowableMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<Runnable> {
 
-    private final Class<? extends Throwable> throwableType;
+    public static <T extends Throwable> Matcher<Runnable> willThrow(Class<T> throwableType) {
+        return new ThrowableMatcher<>(throwableType);
+    }
 
-    public ThrowableMatcher(Class<? extends Throwable> throwableType) {
+    private final Class<T> throwableType;
+
+    private ThrowableMatcher(Class<T> throwableType) {
         this.throwableType = throwableType;
     }
 
