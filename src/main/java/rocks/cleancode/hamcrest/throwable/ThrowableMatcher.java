@@ -4,16 +4,19 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+
 public class ThrowableMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<Runnable> {
 
     public static <T extends Throwable> Matcher<Runnable> willThrow(Class<T> throwableType) {
-        return new ThrowableMatcher<>(throwableType);
+        return new ThrowableMatcher<>(is(instanceOf(throwableType)));
     }
 
-    private final Class<T> throwableType;
+    private final Matcher<T> throwableMatcher;
 
-    private ThrowableMatcher(Class<T> throwableType) {
-        this.throwableType = throwableType;
+    private ThrowableMatcher(Matcher<T> throwableMatcher) {
+        this.throwableMatcher = throwableMatcher;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class ThrowableMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
                     .appendText("was ")
                     .appendText(throwable.getClass().getCanonicalName());
 
-            return throwable.getClass().equals(throwableType);
+            return throwableMatcher.matches(throwable);
         }
 
         mismatchDescription.appendText("nothing was thrown");
@@ -35,9 +38,9 @@ public class ThrowableMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
 
     @Override
     public void describeTo(Description description) {
-        description
-                .appendText("throws ")
-                .appendText(throwableType.getCanonicalName());
+        description.appendText("throwable ");
+
+        throwableMatcher.describeTo(description);
     }
 
 }

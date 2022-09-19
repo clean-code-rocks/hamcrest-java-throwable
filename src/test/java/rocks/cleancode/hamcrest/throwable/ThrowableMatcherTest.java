@@ -25,7 +25,7 @@ public class ThrowableMatcherTest {
         );
 
         String expectedMessage = expectedMessage(
-                "throws java.lang.IllegalArgumentException",
+                "throwable is an instance of java.lang.IllegalArgumentException",
                 "was java.lang.NullPointerException"
         );
 
@@ -40,7 +40,7 @@ public class ThrowableMatcherTest {
         );
 
         String expectedMessage = expectedMessage(
-                "throws java.lang.NullPointerException",
+                "throwable is an instance of java.lang.NullPointerException",
                 "nothing was thrown"
         );
 
