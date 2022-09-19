@@ -13,6 +13,10 @@ public class ThrowableMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
         return new ThrowableMatcher<>(is(instanceOf(throwableType)));
     }
 
+    public static <E extends Exception> Matcher<Runnable> exception(Matcher<E> exceptionMatcher) {
+        return new ThrowableMatcher<>(exceptionMatcher);
+    }
+
     private final Matcher<T> throwableMatcher;
 
     private ThrowableMatcher(Matcher<T> throwableMatcher) {

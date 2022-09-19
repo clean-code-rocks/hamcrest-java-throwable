@@ -8,6 +8,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static rocks.cleancode.hamcrest.throwable.MessageMatcher.message;
+import static rocks.cleancode.hamcrest.throwable.ThrowableMatcher.exception;
 import static rocks.cleancode.hamcrest.throwable.ThrowableMatcher.willThrow;
 
 public class ThrowableMatcherTest {
@@ -33,7 +35,7 @@ public class ThrowableMatcherTest {
     }
 
     @Test
-    public void should_fail_when_no_exception_is_thrown() {
+    public void should_fail_when_no_throwable_is_thrown() {
         AssertionError assertionError = assertThrows(
                 AssertionError.class,
                 () -> assertThat(requireNonNull("Dummy value"), willThrow(NullPointerException.class))
@@ -47,8 +49,13 @@ public class ThrowableMatcherTest {
         assertThat(assertionError.getMessage(), is(equalTo(expectedMessage)));
     }
 
+    @Test
+    public void should_match_exception() {
+        assertThat(requireNonNull(null), exception(message(is(equalTo("Value cannot be null")))));
+    }
+
     private Runnable requireNonNull(Object value) {
-        return () -> Objects.requireNonNull(value);
+        return () -> Objects.requireNonNull(value, "Value cannot be null");
     }
 
     private String expectedMessage(String expected, String actual) {
