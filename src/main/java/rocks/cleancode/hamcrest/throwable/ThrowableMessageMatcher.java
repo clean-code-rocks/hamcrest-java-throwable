@@ -3,9 +3,9 @@ package rocks.cleancode.hamcrest.throwable;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-public class ThrowableMessageMatcher<T extends Throwable> extends ThrowablePropertyMatcher<T> {
+public class ThrowableMessageMatcher<T extends Throwable> extends ThrowableMatcher<T> {
 
-    public static <T extends Throwable> ThrowablePropertyMatcher<T> message(Matcher<String> messageMatcher) {
+    public static <T extends Throwable> ThrowableMatcher<T> message(Matcher<String> messageMatcher) {
         return new ThrowableMessageMatcher<>(messageMatcher);
     }
 
