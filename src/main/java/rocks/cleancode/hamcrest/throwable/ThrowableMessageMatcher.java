@@ -2,10 +2,11 @@ package rocks.cleancode.hamcrest.throwable;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-public class ThrowableMessageMatcher<T extends Throwable> extends ThrowableMatcher<T> {
+public class ThrowableMessageMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<T> {
 
-    public static <T extends Throwable> ThrowableMatcher<T> message(Matcher<String> messageMatcher) {
+    public static <T extends Throwable> TypeSafeDiagnosingMatcher<T> message(Matcher<String> messageMatcher) {
         return new ThrowableMessageMatcher<>(messageMatcher);
     }
 
