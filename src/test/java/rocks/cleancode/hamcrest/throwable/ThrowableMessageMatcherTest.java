@@ -23,12 +23,12 @@ public class ThrowableMessageMatcherTest {
 
         AssertionError assertionError = assertThrows(
                 AssertionError.class,
-                () -> assertThat(throwable, message(is(equalTo("Expected message"))))
+                () -> assertThat(throwable, message(is(equalTo("Other expected message"))))
         );
 
         String expectedMessage = String.format(
                 "%n%s%n%s",
-                "Expected: message is \"Expected message\"",
+                "Expected: message is \"Other expected message\"",
                 "     but: was \"Exception message\""
         );
 
