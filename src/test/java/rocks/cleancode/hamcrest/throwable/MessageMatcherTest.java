@@ -6,9 +6,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static rocks.cleancode.hamcrest.throwable.ThrowableMessageMatcher.message;
+import static rocks.cleancode.hamcrest.throwable.MessageMatcher.message;
 
-public class ThrowableMessageMatcherTest {
+public class MessageMatcherTest {
 
     @Test
     public void should_match_throwable_message() {
