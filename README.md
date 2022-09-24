@@ -21,3 +21,69 @@
 ```
 
 ## Usage
+
+Three matchers are provided for Throwable: `message(matcher)`, `cause(matcher)` and `willThrow(type)`.
+
+### message(matcher)
+
+This matcher matches the throwable message.
+
+```java
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static rocks.cleancode.hamcrest.throwable.MessageMatcher.message;
+
+Throwable throwable = new NullPointerException("Exception message");
+
+assertThat(throwable, message(is(equalTo("Exception message"))));
+```
+
+### cause(matcher)
+
+This matcher matches the throwable cause.
+
+```java
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static rocks.cleancode.hamcrest.throwable.CauseMatcher.cause;
+
+Throwable throwable = new RuntimeException(new NullPointerException("Exception message"));
+
+assertThat(throwable, cause(is(instanceOf(NullPointerException.class))));
+```
+
+### willThrow(type)
+
+This matcher matches the type of the exception thrown by a `java.lang.Runnable`.
+
+```java
+import java.util.Objects;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static rocks.cleancode.hamcrest.throwable.WillThrowMatcher.willThrow;
+
+assertThat(() -> Objects.requireNonNull(null), willThrow(NullPointerException.class));
+```
+
+It is possible to add matchers.
+
+```java
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static rocks.cleancode.hamcrest.throwable.CauseMatcher.cause;
+import static rocks.cleancode.hamcrest.throwable.MessageMatcher.message;
+import static rocks.cleancode.hamcrest.throwable.WillThrowMatcher.willThrow;
+
+assertThat(
+        () -> {
+            throw new RuntimeException("Exception message", new NullPointerException());
+        },
+        willThrow(RuntimeException.class)
+            .and(message(is(equalTo("Exception message"))))
+            .and(cause(is(instanceOf(NullPointerException.class))))
+);
+```
