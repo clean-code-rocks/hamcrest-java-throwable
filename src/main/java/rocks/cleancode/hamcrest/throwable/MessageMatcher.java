@@ -18,6 +18,7 @@ public class MessageMatcher<T extends Throwable> extends TypeSafeDiagnosingMatch
 
     @Override
     protected boolean matchesSafely(T throwable, Description mismatchDescription) {
+        mismatchDescription.appendText("message ");
         messageMatcher.describeMismatch(throwable.getMessage(), mismatchDescription);
 
         return messageMatcher.matches(throwable.getMessage());

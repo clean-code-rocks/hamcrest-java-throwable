@@ -29,7 +29,7 @@ public class MessageMatcherTest {
         String expectedMessage = String.format(
                 "%n%s%n%s",
                 "Expected: message is \"Other expected message\"",
-                "     but: was \"Exception message\""
+                "     but: message was \"Exception message\""
         );
 
         assertThat(assertionError.getMessage(), is(equalTo(expectedMessage)));
