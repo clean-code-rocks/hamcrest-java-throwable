@@ -8,8 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Matches the type of the throwable thrown by a runnable.
+ *
+ * @param <T> Type of the throwable
+ * @since 1.0.0
+ */
 public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<Runnable> {
 
+    /**
+     * Create a matcher for the throwable thrown by a runnable.
+     *
+     * @param throwableClass Throwable class
+     * @return Throwable type matcher
+     * @param <T> Type of the throwable
+     * @since 1.0.0
+     */
     public static <T extends Throwable> WillThrowMatcher<T> willThrow(Class<T> throwableClass) {
         return new WillThrowMatcher<>(throwableClass);
     }
@@ -23,6 +37,9 @@ public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
         this.throwableMatchers = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean matchesSafely(Runnable runnable, Description mismatchDescription) {
         try {
@@ -61,6 +78,9 @@ public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
         return !throwableMatcher.isPresent();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void describeTo(Description description) {
         description
