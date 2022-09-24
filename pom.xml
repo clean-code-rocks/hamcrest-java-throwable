@@ -6,7 +6,7 @@
 
     <groupId>rocks.cleancode</groupId>
     <artifactId>hamcrest-throwable</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Hamcrest - Exceptions and errors</name>
     <description>Java Hamcrest matchers for exceptions and error</description>
@@ -108,7 +108,7 @@
                         <version>3.4.1</version>
                         <configuration>
                             <links>
-                                <link>http://hamcrest.org/JavaHamcrest/javadoc/2.2</link>
+                                <link>https://hamcrest.org/JavaHamcrest/javadoc/2.2</link>
                             </links>
                             <quiet>true</quiet>
                         </configuration>
