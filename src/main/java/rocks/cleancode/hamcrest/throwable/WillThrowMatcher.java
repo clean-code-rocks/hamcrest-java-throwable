@@ -28,28 +28,37 @@ public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
         try {
             runnable.run();
         } catch (Throwable throwable) {
-            boolean typeMatches = throwableClass.equals(throwable.getClass());
-
-            if (!typeMatches) {
-                mismatchDescription
-                        .appendText("was ")
-                        .appendText(throwable.getClass().getCanonicalName());
-
-                return false;
-            }
-
-            Optional<Matcher<T>> throwableMatcher = throwableMatchers.stream()
-                    .filter(matcher -> !matcher.matches(throwable))
-                    .findFirst();
-
-            throwableMatcher.ifPresent(matcher -> matcher.describeMismatch(throwable, mismatchDescription));
-
-            return !throwableMatcher.isPresent();
+            return typeMatches(throwable, mismatchDescription)
+                    && allMatchersMatch(throwable, mismatchDescription);
         }
 
         mismatchDescription.appendText("nothing was thrown");
 
         return false;
+    }
+
+    private boolean typeMatches(Throwable throwable, Description mismatchDescription) {
+        boolean typeMatches = throwableClass.equals(throwable.getClass());
+
+        if (typeMatches) {
+            return true;
+        }
+
+        mismatchDescription
+                .appendText("was ")
+                .appendText(throwable.getClass().getCanonicalName());
+
+        return false;
+    }
+
+    public boolean allMatchersMatch(Throwable throwable, Description mismatchDescription) {
+        Optional<Matcher<T>> throwableMatcher = throwableMatchers.stream()
+                .filter(matcher -> !matcher.matches(throwable))
+                .findFirst();
+
+        throwableMatcher.ifPresent(matcher -> matcher.describeMismatch(throwable, mismatchDescription));
+
+        return !throwableMatcher.isPresent();
     }
 
     @Override
@@ -59,11 +68,13 @@ public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
                 .appendText(throwableClass.getCanonicalName());
 
         throwableMatchers
-                .forEach(throwableMatcher -> {
-                    description.appendText(" and ");
+                .forEach(throwableMatcher -> andDescribeTo(throwableMatcher, description));
+    }
 
-                    throwableMatcher.describeTo(description);
-                });
+    private void andDescribeTo(Matcher<T> throwableMatcher, Description description) {
+        description.appendText(" and ");
+
+        throwableMatcher.describeTo(description);
     }
 
     public WillThrowMatcher<T> and(Matcher<T> throwableMather) {
