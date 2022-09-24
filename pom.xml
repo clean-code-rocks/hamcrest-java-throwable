@@ -108,7 +108,7 @@
                         <version>3.4.1</version>
                         <configuration>
                             <links>
-                                <link>http://hamcrest.org/JavaHamcrest/javadoc/2.2</link>
+                                <link>https://hamcrest.org/JavaHamcrest/javadoc/2.2</link>
                             </links>
                             <quiet>true</quiet>
                         </configuration>
