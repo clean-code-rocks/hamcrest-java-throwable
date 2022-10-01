@@ -12,5 +12,5 @@
 
 - Matcher for `java.lang.Throwable`
 
-[Unreleased]: https://github.com/clean-code-rocks/hamcrest-java-throwable/commits/main
+[Unreleased]: https://github.com/clean-code-rocks/hamcrest-java-throwable/compare/v1.0.0...main
 [1.0.0]: https://github.com/clean-code-rocks/hamcrest-java-throwable/releases/tag/v1.0.0
