@@ -8,6 +8,10 @@
 
 [Java Hamcrest](http://hamcrest.org/JavaHamcrest/) matchers for exceptions and errors.
 
+## Requirement
+
+Java 8+
+
 ## Installation
 
 ### Maven
