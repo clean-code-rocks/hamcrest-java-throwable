@@ -1,12 +1,12 @@
-# Hamcrest - Exceptions and errors
+# Hamcrest - Throwable
 
-[![Maven Central](https://img.shields.io/maven-central/v/rocks.cleancode/hamcrest-throwable?color=brightgreen)](https://search.maven.org/artifact/rocks.cleancode/hamcrest-throwable)
-[![javadoc](https://javadoc.io/badge2/rocks.cleancode/hamcrest-throwable/javadoc.svg)](https://javadoc.io/doc/rocks.cleancode/hamcrest-throwable)
-[![codecov](https://codecov.io/gh/clean-code-rocks/hamcrest-java-throwable/branch/main/graph/badge.svg?token=X7OB8PWHSF)](https://codecov.io/gh/clean-code-rocks/hamcrest-java-throwable)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fhamcrest-java-throwable.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fhamcrest-java-throwable?ref=badge_shield)
+[![Maven Central][Maven Central - badge]][Maven Central - link]
+[![Javadoc][Javadoc - badge]][Javadoc - link]
+[![Codecov][Codecov - badge]][Codecov - link]
+[![License: GPL v3][Licence - badge]][Licence - link]
+[![Fossa][Fossa - badge]][Fossa - link]
 
-[Java Hamcrest](http://hamcrest.org/JavaHamcrest/) matchers for exceptions and errors.
+[Java Hamcrest] matchers for exceptions and errors.
 
 ## Requirement
 
@@ -92,3 +92,16 @@ assertThat(
             .and(cause(is(instanceOf(NullPointerException.class))))
 );
 ```
+
+[Java Hamcrest]: https://hamcrest.org/JavaHamcrest/
+
+[Maven Central - badge]: https://img.shields.io/maven-central/v/rocks.cleancode/hamcrest-throwable?color=brightgreen
+[Maven Central - link]: https://search.maven.org/artifact/rocks.cleancode/hamcrest-throwable
+[Javadoc - badge]: https://javadoc.io/badge2/rocks.cleancode/hamcrest-throwable/javadoc.svg
+[Javadoc - link]: https://javadoc.io/doc/rocks.cleancode/hamcrest-throwable
+[Codecov - badge]: https://codecov.io/gh/clean-code-rocks/hamcrest-java-throwable/branch/main/graph/badge.svg?token=X7OB8PWHSF
+[Codecov - link]: https://codecov.io/gh/clean-code-rocks/hamcrest-java-throwable
+[Licence - badge]: https://img.shields.io/badge/License-GPLv3-blue.svg
+[Licence - link]: https://www.gnu.org/licenses/gpl-3.0
+[Fossa - badge]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fhamcrest-java-throwable.svg?type=shield
+[Fossa - link]: https://app.fossa.com/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fhamcrest-java-throwable?ref=badge_shield
