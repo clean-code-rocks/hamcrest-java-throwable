@@ -12,6 +12,7 @@ import java.util.Optional;
  * Matches the type of the throwable thrown by a runnable.
  *
  * @param <T> Type of the throwable
+ *
  * @since 1.0.0
  */
 public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<Runnable> {
@@ -22,6 +23,7 @@ public class WillThrowMatcher<T extends Throwable> extends TypeSafeDiagnosingMat
      * @param throwableClass Throwable class
      * @return Throwable type matcher
      * @param <T> Type of the throwable
+     *
      * @since 1.0.0
      */
     public static <T extends Throwable> WillThrowMatcher<T> willThrow(Class<T> throwableClass) {

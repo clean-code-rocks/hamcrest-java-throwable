@@ -8,6 +8,7 @@ import org.hamcrest.TypeSafeDiagnosingMatcher;
  * Matches the throwable cause.
  *
  * @param <T> Type of the throwable
+ *
  * @since 1.0.0
  */
 public class CauseMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<T> {
@@ -18,6 +19,7 @@ public class CauseMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher
      * @param causeMatcher Matcher for the cause
      * @return Throwable cause matcher
      * @param <T> Type of the throwable
+     *
      * @since 1.0.0
      */
     public static <T extends Throwable> Matcher<T> cause(Matcher<Object> causeMatcher) {
