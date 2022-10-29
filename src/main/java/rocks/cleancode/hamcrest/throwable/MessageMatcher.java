@@ -8,6 +8,7 @@ import org.hamcrest.TypeSafeDiagnosingMatcher;
  * Matches the throwable message.
  *
  * @param <T> Type of the throwable
+ *
  * @since 1.0.0
  */
 public class MessageMatcher<T extends Throwable> extends TypeSafeDiagnosingMatcher<T> {
@@ -18,6 +19,7 @@ public class MessageMatcher<T extends Throwable> extends TypeSafeDiagnosingMatch
      * @param messageMatcher Matcher for the message
      * @return Throwable message matcher
      * @param <T> Type of the throwable
+     *
      * @since 1.0.0
      */
     public static <T extends Throwable> Matcher<T> message(Matcher<String> messageMatcher) {
